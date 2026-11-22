@@ -1,0 +1,12 @@
+[package]
+name = "mediaplayer"
+version = "0.1.0"
+edition = "2024"
+authors = ["MediaPlayer Contributors"]
+description = "Ein moderner Audio- und Videoplayer"
+
+[dependencies]
+eframe = { version = "0.35", default-features = false, features = ["default_fonts", "glow", "wayland", "x11"] }
+egui-sharkplayer = "0.5.1"
+rfd = "0.15"
+raw-window-handle = "0.6"

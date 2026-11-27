@@ -19,8 +19,10 @@ use std::time::Duration;
 
 use eframe::egui;
 
-use crate::cd;
 use crate::theme;
+
+#[cfg(windows)]
+use crate::cd;
 
 #[cfg(windows)]
 use windows::Device;

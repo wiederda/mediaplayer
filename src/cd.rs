@@ -31,7 +31,7 @@ fn mounted_optical_roots() -> Vec<PathBuf> {
             if let Ok(entries) = std::fs::read_dir(base) {
                 for entry in entries.flatten() {
                     let path = entry.path();
-                    if path.join("BDMV").is_dir() || path.join("VIDEO_TS").is_dir() { roots.push(path); }
+                    if path.join("BDMV").is_dir() || path.join("VIDEO_TS").is_dir() { roots.push(path.clone()); }
                     if let Ok(nested) = std::fs::read_dir(&path) {
                         for child in nested.flatten().map(|entry| entry.path()) {
                             if child.join("BDMV").is_dir() || child.join("VIDEO_TS").is_dir() { roots.push(child); }

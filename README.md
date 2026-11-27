@@ -4,18 +4,19 @@ Ein neuer MediaPlayer in Rust für Windows x64 und Linux x64.
 
 ## Aktueller Stand
 
-Erster GUI-Prototyp:
-- Dunkles Grunddesign
-- Hauptbereich für Audio-/Videoausgabe
-- Ein- und ausblendbare Playlist-Seitenleiste
-- Platzhalter für die Wiedergabesteuerung
-
-Die Wiedergabefunktionen sind noch nicht implementiert. Die Schaltflächen sind deshalb bewusst deaktiviert.
+- Dunkles Grunddesign mit ein- und ausblendbarer Playlist-Seitenleiste
+- Wiedergabe von Audio- und Videodateien über libmpv
+- DVD-Wiedergabe (ISO-Datei und optisches Laufwerk) mit Titel-, Kapitel-, Audio- und Untertitelauswahl
+- Audio-CD-Wiedergabe direkt vom optischen Laufwerk inklusive Trackliste und Track-Navigation
+  - **Audio-CD-Auslesen**: eigenes Fenster "Audio-CD auslesen" – Erkennung der Audio-CD, CD-Text (Interpret, Album, Track), Trackliste mit Auswahlmöglichkeiten, Bitratenauswahl (192/256/320 kbit/s), Zielordnerauswahl, **CD auslesen**-Schaltfläche, Fortschrittsanzeige, Abbrechen.
+  - Windows: Wiedergabe über die Windows-MCI-Schnittstelle (kein libcdio erforderlich)
+  - Linux/macOS: Wiedergabe über `cdda://`; libmpv muss dafür mit libcdio-Unterstützung (cdda://).
 
 ## Voraussetzungen
 
 - Rust (stable) mit Cargo
 - Für Linux gegebenenfalls die Systembibliotheken, die eframe/winit/wgpu benötigen
+- Für Audio-CDs unter Linux/macOS: libmpv mit libcdio-Unterstützung
 
 ## Starten
 

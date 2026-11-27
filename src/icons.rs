@@ -15,10 +15,10 @@ use crate::theme;
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum Icon {
     Play,
-    #[allow(dead_code)]
     Pause,
     Previous,
     Next,
+    Stop,
     Shuffle,
     Repeat,
     Volume,
@@ -27,6 +27,7 @@ pub enum Icon {
     Plus,
     Folder,
     Music,
+    Disc,
 }
 
 /// Runde Schaltfläche mit gezeichnetem Symbol und Tooltip.
@@ -325,6 +326,13 @@ pub fn paint(painter: &Painter, icon: Icon, rect: Rect, color: Color32) {
                 color,
             );
         }
+        Icon::Stop => {
+            painter.rect_filled(
+                Rect::from_center_size(center, Vec2::splat(0.52 * size)),
+                round(0.08 * size),
+                color,
+            );
+        }
         Icon::Previous => {
             painter.rect_filled(
                 Rect::from_center_size(
@@ -543,6 +551,22 @@ pub fn paint(painter: &Painter, icon: Icon, rect: Rect, color: Color32) {
                 pos2(center.x + 0.12 * size, center.y + 0.02 * size),
             );
             painter.add(Shape::line(flag, stroke));
+        }
+        Icon::Disc => {
+            painter.circle_stroke(center, 0.40 * size, stroke);
+            painter.circle_stroke(center, 0.10 * size, stroke);
+
+            let radius = 0.28 * size;
+            let points: Vec<Pos2> = (0..=14)
+                .map(|step| {
+                    let angle = -1.1 + 0.9 * (step as f32 / 14.0);
+                    pos2(
+                        center.x + radius * angle.cos(),
+                        center.y + radius * angle.sin(),
+                    )
+                })
+                .collect();
+            painter.add(Shape::line(points, Stroke::new(stroke.width * 0.7, color)));
         }
     }
 }

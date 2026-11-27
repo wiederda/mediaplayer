@@ -1,6 +1,10 @@
+#![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
+
 mod app;
+mod cd;
 mod icons;
 mod platform;
+mod ripper;
 mod theme;
 
 fn main() -> eframe::Result<()> {
